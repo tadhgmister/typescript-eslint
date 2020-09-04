@@ -112,7 +112,12 @@ namespace Linter {
   export type RuleLevelAndOptions = [RuleLevel, ...unknown[]];
 
   export type RuleEntry = RuleLevel | RuleLevelAndOptions;
-  export type RulesRecord = Partial<Record<string, RuleEntry>>;
+  interface ESLintRulesWithTypescriptExtensions {
+
+    /** disable this and use `@typescript-eslint/no-shadow` instead. */
+    'no-shadow'?: "off" | ["off"]
+  }
+  export type RulesRecord = Partial<Record<string, RuleEntry>> & ESLintRulesWithTypescriptExtensions
 
   // https://github.com/eslint/eslint/blob/v6.8.0/conf/config-schema.js
   interface BaseConfig {

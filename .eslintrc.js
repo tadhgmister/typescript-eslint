@@ -1,4 +1,6 @@
-module.exports = {
+// @ts-check
+/** @type {import("./packages/experimental-utils/src/ts-eslint/Linter").Linter.Config} */
+const config = {
   root: true,
   plugins: [
     'eslint-plugin',
@@ -28,6 +30,7 @@ module.exports = {
     warnOnUnsupportedTypeScriptVersion: false,
   },
   rules: {
+    "no-shadow": ["error", { "hoist": "all" }],
     //
     // our plugin :D
     //
@@ -243,3 +246,4 @@ module.exports = {
     },
   ],
 };
+module.exports = config;
