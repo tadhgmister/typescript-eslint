@@ -5,57 +5,63 @@
 import {
   typedConfig,
   ESLintConfig as ESLintConfigBase,
-} from './packages/typed-config/dist/index';
+} from './packages/typed-config/src/index';
 
 declare global {
   namespace ESLintConfig {
     interface Rules {
-      myRule?:
-        | ESLintConfigBase.RuleLevelAndNoOptions
-        | [ESLintConfigBase.RuleLevel, { test: string }];
+      /** brief description of myRule here */
+      myRule?: ESLintConfigBase.RuleOptions<
+        [
+          {
+            /** Description of test option here */
+            test: string;
+          },
+        ]
+      >;
     }
   }
 }
-
+interface ESLintCommentsRules {
+  'eslint-comments/disable-enable-pair'?: ESLintConfigBase.RuleOptions<
+    [
+      {
+        allowWholeFile?: boolean;
+      },
+    ]
+  >;
+  'eslint-comments/no-aggregating-enable'?: ESLintConfigBase.RuleWithoutOptions;
+  'eslint-comments/no-duplicate-disable'?: ESLintConfigBase.RuleWithoutOptions;
+  'eslint-comments/no-restricted-disable'?: ESLintConfigBase.RuleOptions<
+    string[]
+  >;
+  'eslint-comments/no-unlimited-disable'?: ESLintConfigBase.RuleWithoutOptions;
+  'eslint-comments/no-unused-disable'?: ESLintConfigBase.RuleWithoutOptions;
+  'eslint-comments/no-unused-enable'?: ESLintConfigBase.RuleWithoutOptions;
+  'eslint-comments/no-use'?: ESLintConfigBase.RuleOptions<
+    [
+      {
+        allow?: (
+          | 'eslint'
+          | 'eslint-disable'
+          | 'eslint-disable-line'
+          | 'eslint-disable-next-line'
+          | 'eslint-enable'
+          | 'eslint-env'
+          | 'exported'
+          | 'global'
+          | 'globals'
+        )[];
+      },
+    ]
+  >;
+}
 // eslint-plugin-eslint-comments
 // some hand-crafted types for the smallest plugin we have installed
 declare global {
   namespace ESLintConfig {
-    interface Rules {
-      'eslint-comments/disable-enable-pair'?:
-        | ESLintConfigBase.RuleLevelAndNoOptions
-        | [
-            ESLintConfigBase.RuleLevel,
-            {
-              allowWholeFile?: boolean;
-            },
-          ];
-      'eslint-comments/no-aggregating-enable'?: ESLintConfigBase.RuleLevelAndNoOptions;
-      'eslint-comments/no-duplicate-disable'?: ESLintConfigBase.RuleLevelAndNoOptions;
-      'eslint-comments/no-restricted-disable'?:
-        | ESLintConfigBase.RuleLevelAndNoOptions
-        | [ESLintConfigBase.RuleLevel, ...string[]];
-      'eslint-comments/no-unlimited-disable'?: ESLintConfigBase.RuleLevelAndNoOptions;
-      'eslint-comments/no-unused-disable'?: ESLintConfigBase.RuleLevelAndNoOptions;
-      'eslint-comments/no-unused-enable'?: ESLintConfigBase.RuleLevelAndNoOptions;
-      'eslint-comments/no-use'?:
-        | ESLintConfigBase.RuleLevelAndNoOptions
-        | [
-            ESLintConfigBase.RuleLevel,
-            {
-              allow?: (
-                | 'eslint'
-                | 'eslint-disable'
-                | 'eslint-disable-line'
-                | 'eslint-disable-next-line'
-                | 'eslint-enable'
-                | 'eslint-env'
-                | 'exported'
-                | 'global'
-                | 'globals'
-              )[];
-            },
-          ];
+    interface PluginRules {
+      'eslint-comments': ESLintCommentsRules;
     }
   }
 }
@@ -79,13 +85,15 @@ export = typedConfig({
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    1, // expected error: Type 'number' is not assignable to type 'string'.
+    // 1, // expected error: Type 'number' is not assignable to type 'string'.
   ],
   rules: {
     myRule: [
       // expected error: Type 'string[]' is missing the following properties from type '[RuleLevel, { test: string; }]': 0, 1
       'error',
-      'foo',
+      {
+        test: '',
+      },
     ],
 
     //
@@ -106,6 +114,7 @@ export = typedConfig({
     '@typescript-eslint/no-empty-function': [
       'error',
       { allow: ['arrowFunctions'] },
+      'NOT VALID',
     ],
 
     //
@@ -128,6 +137,7 @@ export = typedConfig({
       'error',
       {
         allowWholeFile: true,
+        hello: '',
       },
     ],
     // disallow a eslint-enable comment for multiple eslint-disable comments

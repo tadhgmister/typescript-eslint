@@ -1,16 +1,16 @@
-// import ruleIndex from "@typescript-eslint/eslint-plugin/src/rules";
-import configs from './configs/all';
+// import ruleIndex from '@typescript-eslint/eslint-plugin/src/rules';
+// import configs from './configs/all';
+import {} from './eslintConfig';
 
-type RuleDefs = typeof configs['rules'];
-// all the rules we disable because they conflict with one of ours
-type _BaseHasExtension = {
-  [K in keyof RuleDefs]: RuleDefs[K] extends 'off' ? K : never;
-}[keyof RuleDefs];
+// type RuleDefs = typeof configs['rules'];
+// // all the rules we disable because they conflict with one of ours
+// type _BaseHasExtension = {
+//   [K in keyof RuleDefs]: RuleDefs[K] extends 'off' ? K : never;
+// }[keyof RuleDefs];
 // // the rest of them:
 // type TSRules = {
 //   [K in keyof RuleDefs]: RuleDefs[K] extends 'off' ? never : K;
 // }[keyof RuleDefs];
-
 declare global {
   namespace ESLintConfig {
     interface ExtraParserOptionsMap {
