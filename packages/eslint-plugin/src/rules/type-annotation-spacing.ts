@@ -44,7 +44,7 @@ const definition = {
     after: { type: 'boolean' },
   },
   additionalProperties: false,
-};
+} as const;
 
 function createRules(options?: Config): WhitespaceRules {
   const globals = {
