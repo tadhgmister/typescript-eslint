@@ -77,7 +77,7 @@ interface RuleMetaData<TMessageIds extends string> {
   /**
    * The options schema. Supply an empty array if there are no options.
    */
-  schema: JSONSchema4 | JSONSchema4[];
+  schema: JSONSchema4[];
 }
 
 interface RuleFix {

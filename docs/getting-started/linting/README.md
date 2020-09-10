@@ -4,6 +4,8 @@ Whether you're adding linting to a new TypeScript codebase, adding TypeScript to
 
 ## Installation
 
+<!-- one or the other not both -->
+
 First step is to make sure you've got the required packages installed:
 
 ```bash
@@ -17,18 +19,24 @@ Next, create a `.eslintrc.js` config file in the root of your project, and popul
 
 <!-- prettier-ignore -->
 ```js
-module.exports = {
+// @ts-check
+const { typedConfigEasySetup } = require('@typescript-eslint/typed-config');
+module.exports = typedConfigEasySetup({
   root: true,
-  parser: '@typescript-eslint/parser',
   plugins: [
-    '@typescript-eslint',
+    '@typescript-eslint'
   ],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
   ],
-};
+});
 ```
+
+<!-- cut down on describing parts, can just say EasySetup does the core parts.
+should probably put the typedConfig and typedConfigEasySetup in it's own file so linking
+to it doesn't look horribly daunting, can show that it just adds the base config.
+-->
 
 This is about the smallest config file we recommend. There's a lot more you can add to this as you further onboard, but this will be enough to get you started.
 
@@ -47,9 +55,11 @@ Further reading:
 
 - You can read more about configuring ESLint [in their documentation on configuration.](https://eslint.org/docs/user-guide/configuring).
 - You can read more about the rules provided by ESLint [in their documentation on their rules](https://eslint.org/docs/rules/).
-- You can read more about the rules provided by us in [our plugin documentation](../../../packages/eslint-plugin).
+- You can read more about the rules provided by us in [our plugin documentation](../../../packages/eslint-plugin). <!-- better link here -->
 
 ## Ignoring unnecessary files
+
+<!-- should be optional and below running the lint. -->
 
 Next, create a `.eslintignore` file in the root of your project.
 This file will tell ESLint which files and folders it should never lint.
@@ -66,6 +76,11 @@ coverage
 ```
 
 ## Running the lint
+
+<!--
+link to https://eslint.org/docs/user-guide/integrations
+   and  https://eslint.org/docs/user-guide/command-line-interface
+-->
 
 With that configured, open a terminal to the root of your project, and run the following command
 
@@ -87,6 +102,8 @@ You can also get results in realtime inside most IDEs via a plugin - just search
 
 With that configured you can now start to delve into the wide and extensive ESLint ecosystem of plugins and configs.
 
+<!-- "Once you confirm that is working add 'type specific rule instructions'" -->
+
 ### Extending your TypeScript linting with Type-Aware Rules
 
 We have a lot of awesome rules which utilize the power of TypeScript's type information. They require a little bit of extra setup beyond this first step, [so visit the next page to see how to set this up.](./TYPED_LINTING.md)
@@ -99,6 +116,8 @@ There are many configuration packages in the ecosystem - these packages that exi
 - Standard - [`eslint-config-standard-with-typescript`](https://www.npmjs.com/package/eslint-config-standard-with-typescript).
 
 To use one of these complete config packages, you would replace the `extends` with one of these, for example:
+
+<!-- will want to search for all `module.exports =` to do find and replace  -->
 
 ```diff
   module.exports = {

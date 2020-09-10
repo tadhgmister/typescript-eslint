@@ -1,4 +1,13 @@
+/* eslint-disable @typescript-eslint/triple-slash-reference */
 // @ts-check
+/// <reference path="./.eslintrc_types/eslintBaseRules.d.ts" />
+/// <reference path="./.eslintrc_types/eslint-plugin-@typescript-eslint.d.ts" />
+/// <reference path="./.eslintrc_types/eslint-plugin-@typescript-eslint_internal.d.ts" />
+/// <reference path="./.eslintrc_types/eslint-plugin-eslint-comments.d.ts" />
+/// <reference path="./.eslintrc_types/eslint-plugin-eslint-plugin.d.ts" />
+/// <reference path="./.eslintrc_types/eslint-plugin-import.d.ts" />
+/// <reference path="./.eslintrc_types/eslint-plugin-jest.d.ts" />
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { typedConfig } = require('@typescript-eslint/typed-config');
 
 module.exports = typedConfig({

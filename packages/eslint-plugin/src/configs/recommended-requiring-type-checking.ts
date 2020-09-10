@@ -22,4 +22,4 @@ export = {
     '@typescript-eslint/restrict-template-expressions': 'error',
     '@typescript-eslint/unbound-method': 'error',
   },
-};
+} as const;

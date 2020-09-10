@@ -33,6 +33,8 @@
 
 ## Getting Started / Installation
 
+<!-- improve link here, should go directly to getting started not to split. -->
+
 - **[You can find our Getting Started docs here](./docs/getting-started/README.md)**
 - **[You can find our Linting FAQ / Troubleshooting docs here](./docs/getting-started/linting/FAQ.md)**
 
@@ -84,7 +86,7 @@ The TypeScript Team themselves also announced their plans to move the TypeScript
 
 If you are looking for help in migrating from TSLint to ESLint, you can check out this project: https://github.com/typescript-eslint/tslint-to-eslint-config
 
-You can look at [`the plugin ROADMAP.md`](./packages/eslint-plugin/ROADMAP.md) for an up to date overview of how TSLint rules compare to the ones in this package.
+You can look at [the plugin `ROADMAP.md`](./packages/eslint-plugin/ROADMAP.md) for an up to date overview of how TSLint rules compare to the ones in this package.
 
 There is also the ultimate fallback option of using both linters together for a while during your transition if you absolutely have to by using TSLint _within_ ESLint. For this option, check out [`@typescript-eslint/eslint-plugin-tslint`](./packages/eslint-plugin-tslint/).
 
@@ -138,6 +140,8 @@ The short answer is, no.
 
 The great news is, **there are many, many rules which will "just work"** without you having to change anything about them or provide any custom alternatives.
 
+<!-- the wording here is assuming people are reading this end to end, maybe rephrase in the main readme so it assumes people are looking for just info they care about -->
+
 However, it is super important to be mindful of all of the things we have covered in this README so far.
 
 - TypeScript and ESLint have similar purposes
@@ -157,6 +161,8 @@ One of the huge benefits of using TypeScript is the fact that type information c
 
 When the transformation steps outlined above take place, we keep references to the original TypeScript AST and associated parser services, and so ESLint rules authors can access them in their rules.
 
+<!-- should mention actual configs, have one that requires type info for recommended rules that use it. -->
+
 We already do this in numerous rules within [`@typescript-eslint/eslint-plugin`](./packages/eslint-plugin/), for example, `no-unnecessary-type-assertion` and `no-inferrable-types`.
 
 <br>
@@ -174,6 +180,8 @@ Some of the people involved in `typescript-eslint` are also involved in Babel an
 <br>
 
 ## How can I help?
+
+<!-- should have way more links here, to contributing document with direct links and issue reporting and developing document. -->
 
 I'm so glad you asked!
 
@@ -241,6 +249,8 @@ We will always endeavor to support the latest stable version of TypeScript. Some
 
 Note that our packages have an open `peerDependency` requirement in order to allow for experimentation on newer/beta versions of TypeScript.
 
+<!-- could have more specific link than just the whole package -->
+
 If you use a non-supported version of TypeScript, the parser will log a warning to the console. If you want to disable this warning, you can configure this in your `parserOptions`. See: [`@typescript-eslint/parser`](./packages/parser/) and [`@typescript-eslint/typescript-estree`](./packages/typescript-estree/).
 
 **Please ensure that you are using a supported version before submitting any issues/bug reports.**
@@ -249,13 +259,15 @@ If you use a non-supported version of TypeScript, the parser will log a warning 
 
 ## Supported ESLint version
 
-See the value of `eslint` declared in `@typescript-eslint/eslint-plugin`'s [package.json](./packages/eslint-plugin/package.json).
+See the value of `eslint` declared in [`@typescript-eslint/eslint-plugin/package.json`](./packages/eslint-plugin/package.json).
 
 ## Supported Node version
 
 This project makes an effort to support Active LTS and Maintenance LTS release statuses of Node according to [Node's release document](https://nodejs.org/en/about/releases/). Support for specific Current status releases are considered periodically.
 
 ## License
+
+<!-- this doesn't really clarify where the license comes from -->
 
 TypeScript ESLint inherits from the the original TypeScript ESLint Parser license, as the majority of the work began there. It is licensed under a permissive BSD 2-clause license.
 
@@ -299,5 +311,7 @@ Support this project with your organization. Your logo will show up here with a 
 </a>
 
 ## Contributing Guide
+
+<!-- need this in 'how do i help' -->
 
 [See the contributing guide here](./CONTRIBUTING.md)

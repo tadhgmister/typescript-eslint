@@ -138,4 +138,4 @@ export = {
     '@typescript-eslint/unbound-method': 'error',
     '@typescript-eslint/unified-signatures': 'error',
   },
-};
+} as const;

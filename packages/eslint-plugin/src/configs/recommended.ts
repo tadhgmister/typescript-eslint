@@ -31,4 +31,4 @@ export = {
     '@typescript-eslint/prefer-namespace-keyword': 'error',
     '@typescript-eslint/triple-slash-reference': 'error',
   },
-};
+} as const;
