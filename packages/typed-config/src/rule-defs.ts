@@ -12,6 +12,7 @@ import {} from './eslintConfig';
 //   [K in keyof RuleDefs]: RuleDefs[K] extends 'off' ? never : K;
 // }[keyof RuleDefs];
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ESLintConfig {
     interface ExtraParserOptionsMap {
       '@typescript-eslint/parser': {

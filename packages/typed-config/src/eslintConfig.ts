@@ -11,6 +11,7 @@ type UnionToIntersection<U> = (
 // a namespace makes it easy to group all of the types together
 // so that they don't pollute the global namespace
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ESLintConfig {
     export type RuleLevel = 0 | 1 | 2 | 'off' | 'warn' | 'error';
     export type RuleOptions<Opts extends unknown[]> =
