@@ -1,3 +1,20 @@
+/**
+ * POV script to generate rule declaration files from the JSON Schema
+ * needs a lot of cleaning up:
+ * - need to contact and/or contribute to json-schema-to-typescript, current handling is very unsound
+ *   - would like to have main type self contained and auxillary definitions separately
+ *     current logic of splicing it out from the string has a number of cases that would fail.
+ *   - would like to specify not to export auxillary types, they don't need to be public.
+ *   - need to specify `usedNames` set to ensure uniqueness of naming across multiple calls
+ *     current solution of mutating all the refs to have the rule name is not a complete solution
+ * - need to figure out how `.d.ts` files work, currently have to reference every one to get their definitions
+ *   seems to behave differently depending if there is an import or not (declare global is conditionally valid???)
+ * - assuming we still do need to reference every declaration, will need linter rule to auto-add the references.
+ * - need to add command line arguments to this script and move it to typed-config package
+ *   so people can use it without cloning the whole repo
+ * - need to figure out how to do correct dependency on json-schema-to-typescript, definitely screwed it up in this branch.
+ */
+
 import prettier from 'prettier';
 import { compile, JSONSchema } from 'json-schema-to-typescript';
 import { toSafeString } from 'json-schema-to-typescript/dist/src/utils';
@@ -43,7 +60,7 @@ function getEslintPlugin(name: string): EslintPluginModule {
   }
 }
 /**
- * THIS FUNCTION IS FUNDEMENTALLY FLAWED
+ * THIS FUNCTION IS FUNDAMENTALLY FLAWED
  * The goal of this function is to rename the references so that 2 rules that use the name
  * 'value' for the type won't overlap.
  * But it assumes the reference is internal which it shouldn't, need to get ref settings to
@@ -223,7 +240,7 @@ declare global {
   const tail: string[] = ['/* REST IS AUTO-GENERATED REFERENCE TYPES */'];
   const addToPreambleAndTail = (a?: string, b?: string): void => {
     if (a !== undefined && a !== '') {
-      // will put everything in tail, they are all suppliment type definitions
+      // will put everything in tail, they are all supplemental type definitions
       // we don't need to see them at the top.
       tail.push(a);
     }
