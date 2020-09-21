@@ -25,7 +25,7 @@ This rule accepts one string option:
 
 For example:
 
-```CJSON
+```JSONC
 {
     // Use type for object definitions
     "@typescript-eslint/consistent-type-definitions": ["error", "type"]
