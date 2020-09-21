@@ -154,6 +154,22 @@ For example, you can ban enums (or some variation of) using one of the following
 }
 ```
 
+Or if you want to enforce that all [tuples have labels](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html#labeled-tuple-elements) you could do this:
+
+```jsonc
+{
+  "rules": {
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "TSTupleType > :not(TSNamedTupleMember)",
+        "message": "all tuples should have labels"
+      }
+    ]
+  }
+}
+```
+
 <br />
 <br />
 <br />
